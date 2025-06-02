@@ -1,11 +1,17 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
-        <div className="flex flex-col items-start justify-center">
-            <Link to="/">Home</Link>
-            <Link to="/AddBlog">Add A Blog</Link>
-            <Link to="/ViewBlogs">View Blogs</Link>
+        <div className="flex flex-row items-center justify-between px-6 py-4 bg-[#FF3F33] shadow-md w-full text-white text-lg font-medium">
+            <Link to="/" className="hover:text-yellow-200 transition-colors duration-200">
+                Home
+            </Link>
+            <Link to="/AddBlog" className="hover:text-yellow-200 transition-colors duration-200">
+                Add A Blog
+            </Link>
+            <Link to="/ViewBlogs" className="hover:text-yellow-200 transition-colors duration-200">
+                View Blogs
+            </Link>
         </div>
-    )
+    );
 }
