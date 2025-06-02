@@ -14,11 +14,31 @@ export default function BlogForm() {
         });
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(blogData);
-        alert(`A new blog "${blogData.title}" is now updated.`);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/blogs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(blogData)
+            });
+
+            if (!response.ok) throw new Error('Failed to create blog');
+
+            const newBlog = await response.json();
+
+            alert(`Blog "${newBlog.title}" created successfully!`);
+            setBlogData({ title: '', author: '', description: '' }); // reset form
+
+            // Optional: redirect to blog list or update state if parent manages it
+            // For example, use React Router's navigate or history.push('/blogs')
+        } catch (error) {
+            console.error('Error creating blog:', error);
+            alert('Error creating blog, please try again');
+        }
     }
+
 
     return (
         <div className="min-h-screen  flex items-center justify-center px-4">
