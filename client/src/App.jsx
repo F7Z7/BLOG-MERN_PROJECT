@@ -1,14 +1,23 @@
 import { useState } from 'react'
 import './App.css'
+import {Route, Routes} from "react-router-dom";
+import Layout from "./routes/layout.jsx";
+import Home from "./pages/Home.jsx";
+import ViewBlogs from "./pages/ViewBlogs.jsx";
+import AddBlog from "./pages/AddBlog.jsx";
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
       <>
-          <h1 className=" ">
-              Hello world!
-          </h1>
+          <Routes>
+              <Route path="/" element={<Layout/>}>
+                  <Route index element={<Home/>}/>
+                  <Route path="AddBlog" element={<AddBlog/>}/>
+                  <Route path="ViewBlogs" element={<ViewBlogs/>}/>
+              </Route>
+          </Routes>
       </>
   )
 }
